@@ -1,0 +1,56 @@
+#colorList{
+  float: left;
+}
+
+#form{
+  width:500px;
+  float:left;
+  text-align: center;
+  border-left: 1px solid grey;
+}
+
+label #form{
+  text-align: left;
+}
+
+#tableContainer{
+  float:right;
+  border-left: 1px solid grey;
+}
+
+th, td {
+  border: 1px solid black;
+  padding:5px
+}
+
+table {
+  border: 2px solid black;
+}
+
+
+.container{
+  padding:10px;
+  height: 100vh;
+  float:left
+}
+
+.colorSelector{
+  cursor: pointer;
+}
+
+.colorSelector.active{
+  font-weight: bold;
+}
+
+.colorSelector:hover{
+  color: mediumblue;
+}
+
+#postText{
+  width:400px;
+  height:300px;
+}
+
+/*#userSelector{*/
+/*  width:200px;*/
+/*}*/

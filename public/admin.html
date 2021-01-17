@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PostsPage</title>
+    <script src="../jquery-3.5.1.min.js"></script>
+    <script src="../chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="../chosen.min.css">
+    <link rel="stylesheet"  href="../stylesheets/admin.css">
+</head>
+<body>
+    <div class="container" id="colorList">
+        <h3>Изменить цвет админки:</h3>
+        <ul>
+            <li class="colorSelector active" id="white">Белый</li>
+            <li class="colorSelector" id="pink">Розовый</li>
+            <li class="colorSelector" id="LightBlue">Синий</li>
+            <li class="colorSelector" id="yellow">Желтый</li>
+        </ul>
+    </div>
+    <div class="container" id="form">
+        <form action="/users" method="post">
+            <h3>Добавить нового пользователя:</h3>
+            <label for="name">Имя пользователя:</label>
+            <input type="text" id="name" name="name"/><br/>
+            <label for="username">Никнейм:</label>
+            <input type="text" id="username" name="username"/><br/>
+            <label for="email">Электронная почта:</label>
+            <input type="text" id="email" name="email"/><br/>
+            <input type="submit" value="Добавить"/>
+        </form>
+        <br/>
+        <hr/>
+        <br/>
+        <form action="/posts" method="post">
+            <h3>Добавить пост:</h3>
+            <label for="userSelector">От пользователя:</label>
+            <select  class="select form-control" id="userSelector" name="userId">
+            </select><br/>
+            <label for="postTitle">Заголовок поста:</label>
+            <input type="text" id="postTitle" name="postTitle"/><br/>
+            <textarea id="postText" name="postText"></textarea>
+            <input type="submit" value="Добавить"/>
+        </form>
+
+
+    </div>
+    <div class="container" id="tableContainer">
+    </div>
+
+
+<script>
+    const colors = ['white','pink', 'LightBlue', 'yellow'];
+    colors.forEach(color=>{
+        let selector = '#' + color;
+        $(selector).click(event=>{
+            colors.forEach(color=>{
+                let selector = '#' + color;
+                const element = $(selector);
+                if(event.target.id === color){
+                    element.addClass('active')
+                }else{
+                    element.removeClass('active')
+                }
+            })
+            $("body").css("background-color", color);
+        })
+    })
+
+
+
+
+    $.getJSON("/users")
+        .then(result=> {
+            if(result.length > 0){
+                let tableContainer= $('#tableContainer')
+                let userSelector= document.getElementById('userSelector')
+                tableContainer.append('<h3>Список добавленных пользователей:</h3>')
+                tableContainer.append('<table id="table"></table>')
+                let table = $('#table')
+                table.append('<tr><th>Name</th><th>Username</th><th>Email</th></tr>')
+                result.forEach(user=>{
+                    console.log(user);
+                    table.append(`<tr><td>${user.name}</td><td>${user.username}</td><td>${user.email}</td></tr>`)
+                    let optionEl = document.createElement('option');
+                    optionEl.value = user._id;
+                    optionEl.id = user.username;
+                    optionEl.innerText = user.username;
+                    userSelector.appendChild(optionEl)
+                })
+                $('#userSelector').chosen()
+
+
+
+            }
+        })
+        .catch(e=>console.log(e))
+</script>
+</body>
+</html>
