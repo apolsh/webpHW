@@ -21,22 +21,33 @@
     <div class="container" id="form">
         <form action="/users" method="post">
             <h3>Добавить нового пользователя:</h3>
-            <label for="name">Имя пользователя:</label>
-            <input type="text" id="name" name="name"/><br/>
-            <label for="username">Никнейм:</label>
-            <input type="text" id="username" name="username"/><br/>
-            <label for="email">Электронная почта:</label>
-            <input type="text" id="email" name="email"/><br/>
+            <table>
+                <tr>
+                   <td><label for="name">Имя пользователя:</label></td>
+                   <td><input type="text" id="name" name="name"/></td>
+                </tr>
+                <tr>
+                    <td><label for="username">Никнейм:</label></td>
+                    <td><input type="text" id="username" name="username"/></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Электронная почта:</label></td>
+                    <td><input type="text" id="email" name="email"/></td>
+                </tr>
+            </table>
+            <br/>
             <input type="submit" value="Добавить"/>
         </form>
         <br/>
         <hr/>
-        <br/>
         <form action="/posts" method="post">
             <h3>Добавить пост:</h3>
-            <label for="userSelector">От пользователя:</label>
-            <select  class="select form-control" id="userSelector" name="userId">
-            </select><br/>
+            <div>
+                <label for="userSelector">От пользователя:</label>
+                <select  class="select form-control" id="userSelector" name="userId">
+                </select>
+            </div>
+            <br/>
             <label for="postTitle">Заголовок поста:</label>
             <input type="text" id="postTitle" name="postTitle"/><br/>
             <textarea id="postText" name="postText"></textarea>

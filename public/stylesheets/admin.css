@@ -14,7 +14,7 @@ label #form{
 }
 
 #tableContainer{
-  float:right;
+  float:left;
   border-left: 1px solid grey;
 }
 
