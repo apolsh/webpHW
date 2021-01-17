@@ -15,7 +15,8 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
 export const fetchPosts = () => async dispatch => {
     const response = await axios({
         method: 'get',
-        url: 'http://localhost:3991/posts'
+        port: 3991,
+        url: '/posts'
     })
     dispatch({type: 'FETCH_POSTS', payload: response.data})
 }
@@ -23,7 +24,8 @@ export const fetchPosts = () => async dispatch => {
 export const fetchUser = (userId) => async dispatch =>{
     const response = await axios({
         method: 'get',
-        url: `http://localhost:3991/users/${userId}`
+        port: 3991,
+        url: `/users/${userId}`
     })
     dispatch({type: 'FETCH_USER', payload: response.data})
 }
@@ -31,7 +33,8 @@ export const fetchUser = (userId) => async dispatch =>{
 export const deletePost = postId => async dispatch =>{
     await axios({
         method:'delete',
-        url: `http://localhost:3991/posts/${postId}`
+        port:3991,
+        url: `/posts/${postId}`
     })
 
     dispatch({type:'DELETE_POST', payload: postId})
